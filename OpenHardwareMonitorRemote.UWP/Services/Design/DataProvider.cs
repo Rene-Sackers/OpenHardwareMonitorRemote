@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using OpenHardwareMonitorRemote.UWP.Models;
 using OpenHardwareMonitorRemote.UWP.Services.Interfaces;
 
@@ -6,14 +7,17 @@ namespace OpenHardwareMonitorRemote.UWP.Services.Design
 {
     public class DataProvider : IDataProvider
     {
-        public IEnumerable<Connection> GetConnections()
+        public StoredApplicationData GetStoredApplicationData()
         {
-            var connections = new List<Connection>();
-
+            var storedApplicationData = new StoredApplicationData
+            {
+                Connections = new List<Connection>()
+            };
+            
             const int connectionCount = 10;
             for (var i = 1; i <= connectionCount; i++)
             {
-                connections.Add(new Connection
+                storedApplicationData.Connections.Add(new Connection
                 {
                     Title = "Design connection " + i,
                     Ip = "http://localhost/",
@@ -21,7 +25,12 @@ namespace OpenHardwareMonitorRemote.UWP.Services.Design
                 });
             }
 
-            return connections;
+            return storedApplicationData;
+        }
+
+        public void SaveStoredApplicationData(StoredApplicationData storedApplicationData)
+        {
+            throw new NotImplementedException();
         }
     }
 }

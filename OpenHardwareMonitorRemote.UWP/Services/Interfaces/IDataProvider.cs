@@ -5,6 +5,8 @@ namespace OpenHardwareMonitorRemote.UWP.Services.Interfaces
 {
     public interface IDataProvider
     {
-        IEnumerable<Connection> GetConnections();
+        StoredApplicationData GetStoredApplicationData();
+
+        void SaveStoredApplicationData(StoredApplicationData storedApplicationData);
     }
 }

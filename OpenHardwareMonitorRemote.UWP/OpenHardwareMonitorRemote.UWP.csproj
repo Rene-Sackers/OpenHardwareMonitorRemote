@@ -95,6 +95,8 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\Extensions\ApplicationDataContainerExtensions.cs" />
+    <Compile Include="Models\StoredApplicationData.cs" />
     <Compile Include="Models\Connection.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Services\DataProvider.cs" />

@@ -11,7 +11,7 @@ namespace OpenHardwareMonitorRemote.UWP.ViewModels
 
         public MainPageViewModel(IDataProvider dataProvider)
         {
-            Connections = new ObservableCollection<Connection>(dataProvider.GetConnections());
+            Connections = new ObservableCollection<Connection>(dataProvider.GetStoredApplicationData().Connections);
         }
     }
 }

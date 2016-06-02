@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Runtime.Serialization;
 using OpenHardwareMonitorRemote.UWP.Annotations;
 
 namespace OpenHardwareMonitorRemote.UWP.Models
@@ -10,6 +11,7 @@ namespace OpenHardwareMonitorRemote.UWP.Models
 
         private string _title;
 
+        [DataMember]
         public string Title
         {
             get { return _title; }
@@ -24,6 +26,7 @@ namespace OpenHardwareMonitorRemote.UWP.Models
 
         private string _ip;
 
+        [DataMember]
         public string Ip
         {
             get { return _ip; }
@@ -38,6 +41,7 @@ namespace OpenHardwareMonitorRemote.UWP.Models
 
         private ushort _port;
 
+        [DataMember]
         public ushort Port
         {
             get { return _port; }
