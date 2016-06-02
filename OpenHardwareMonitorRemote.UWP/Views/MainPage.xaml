@@ -47,6 +47,11 @@
                         <FontIcon Glyph="&#xE710;" />
                     </AppBarButton.Icon>
                 </AppBarButton>
+                <AppBarButton IsCompact="True" Command="{Binding ConnectToSelectedSelectedConnectionCommand}">
+                    <AppBarButton.Icon>
+                        <FontIcon Glyph="&#xE8AF;" />
+                    </AppBarButton.Icon>
+                </AppBarButton>
                 <AppBarButton IsCompact="True" Command="{Binding EditSelectedConnectionCommand}">
                     <AppBarButton.Icon>
                         <FontIcon Glyph="&#xE70F;" />

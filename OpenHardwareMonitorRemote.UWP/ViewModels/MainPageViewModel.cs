@@ -33,6 +33,8 @@ namespace OpenHardwareMonitorRemote.UWP.ViewModels
 
         public RelayCommand AddConnectionCommand { get; set; }
 
+        public RelayCommand ConnectToSelectedSelectedConnectionCommand { get; set; }
+
         public RelayCommand EditSelectedConnectionCommand { get; set; }
 
         public RelayCommand DeleteSelectedConnectionCommand { get; set; }
@@ -45,8 +47,28 @@ namespace OpenHardwareMonitorRemote.UWP.ViewModels
             Connections = new ObservableCollection<Connection>(dataProvider.GetStoredApplicationData().Connections);
 
             AddConnectionCommand = new RelayCommand(AddConnection);
+            ConnectToSelectedSelectedConnectionCommand = new RelayCommand(ConnectToSelectedConnection, () => SelectedConnection != null);
             EditSelectedConnectionCommand = new RelayCommand(EditSelectedConnection, () => SelectedConnection != null);
             DeleteSelectedConnectionCommand = new RelayCommand(DeleteSelectedConnection, () => SelectedConnection != null);
+        }
+
+        private async void AddConnection()
+        {
+            _editConnectionPageViewModel.Connection = new Connection();
+
+            var modalResult = await _editConnectionPageViewModel.ShowAsModal();
+            if (!modalResult) return;
+
+            Connections.Add(_editConnectionPageViewModel.Connection);
+
+            var storedData = _dataProvider.GetStoredApplicationData();
+            storedData.Connections = Connections;
+            _dataProvider.SaveStoredApplicationData(storedData);
+        }
+
+        private void ConnectToSelectedConnection()
+        {
+            throw new NotImplementedException();
         }
 
         private async void EditSelectedConnection()
@@ -84,20 +106,6 @@ namespace OpenHardwareMonitorRemote.UWP.ViewModels
             if (pressedCommand != yesCommand) return;
 
             Connections.Remove(SelectedConnection);
-
-            var storedData = _dataProvider.GetStoredApplicationData();
-            storedData.Connections = Connections;
-            _dataProvider.SaveStoredApplicationData(storedData);
-        }
-
-        private async void AddConnection()
-        {
-            _editConnectionPageViewModel.Connection = new Connection();
-
-            var modalResult = await _editConnectionPageViewModel.ShowAsModal();
-            if (!modalResult) return;
-
-            Connections.Add(_editConnectionPageViewModel.Connection);
 
             var storedData = _dataProvider.GetStoredApplicationData();
             storedData.Connections = Connections;
