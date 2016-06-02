@@ -9,7 +9,7 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <GridView ItemsSource="{Binding Connections}">
+        <GridView ItemsSource="{Binding Connections}" SelectedItem="{Binding SelectedConnection, Mode=TwoWay}">
             <GridView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <VariableSizedWrapGrid Orientation="Horizontal" ItemWidth="300" ItemHeight="150" />
@@ -38,4 +38,26 @@
             </GridView.ItemTemplate>
         </GridView>
     </Grid>
+
+    <Page.BottomAppBar>
+        <AppBar ClosedDisplayMode="Compact">
+            <StackPanel Orientation="Horizontal">
+                <AppBarButton IsCompact="True" Command="{Binding AddConnectionCommand}">
+                    <AppBarButton.Icon>
+                        <FontIcon Glyph="&#xE710;" />
+                    </AppBarButton.Icon>
+                </AppBarButton>
+                <AppBarButton IsCompact="True" Command="{Binding EditSelectedConnectionCommand}">
+                    <AppBarButton.Icon>
+                        <FontIcon Glyph="&#xE70F;" />
+                    </AppBarButton.Icon>
+                </AppBarButton>
+                <AppBarButton IsCompact="True" Command="{Binding DeleteSelectedConnectionCommand}">
+                    <AppBarButton.Icon>
+                        <FontIcon Glyph="&#xE74D;" />
+                    </AppBarButton.Icon>
+                </AppBarButton>
+            </StackPanel>
+        </AppBar>
+    </Page.BottomAppBar>
 </Page>

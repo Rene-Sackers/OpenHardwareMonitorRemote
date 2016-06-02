@@ -9,14 +9,19 @@ namespace OpenHardwareMonitorRemote.UWP.Services
     {
         private const string StoredDataKey = "Data";
 
+        private ApplicationDataContainer GetApplicationDataContainer()
+        {
+            return ApplicationData.Current.RoamingSettings;
+        }
+
         public StoredApplicationData GetStoredApplicationData()
         {
-            return ApplicationData.Current.RoamingSettings.GetStoredObject(StoredDataKey, new StoredApplicationData());
+            return GetApplicationDataContainer().GetStoredObject(StoredDataKey, new StoredApplicationData());
         }
 
         public void SaveStoredApplicationData(StoredApplicationData storedApplicationData)
         {
-            ApplicationData.Current.RoamingSettings.Values[StoredDataKey] = storedApplicationData;
+            GetApplicationDataContainer().StoreObject(StoredDataKey, storedApplicationData);
         }
     }
 }

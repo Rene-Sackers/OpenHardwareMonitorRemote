@@ -96,14 +96,19 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Extensions\ApplicationDataContainerExtensions.cs" />
+    <Compile Include="Helpers\Extensions\NavigationServiceExtension.cs" />
     <Compile Include="Models\StoredApplicationData.cs" />
     <Compile Include="Models\Connection.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Services\DataProvider.cs" />
     <Compile Include="Services\Design\DataProvider.cs" />
     <Compile Include="Services\Interfaces\IDataProvider.cs" />
+    <Compile Include="ViewModels\EditConnectionPageViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
+    <Compile Include="Views\EditConnectionPage.xaml.cs">
+      <DependentUpon>EditConnectionPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\HamburgerMenu.xaml.cs">
       <DependentUpon>HamburgerMenu.xaml</DependentUpon>
     </Compile>
@@ -133,6 +138,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Views\EditConnectionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\HamburgerMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

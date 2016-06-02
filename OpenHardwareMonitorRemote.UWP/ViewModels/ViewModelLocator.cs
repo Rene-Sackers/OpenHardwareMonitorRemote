@@ -1,6 +1,9 @@
 ﻿using GalaSoft.MvvmLight.Ioc;
+using GalaSoft.MvvmLight.Views;
+using OpenHardwareMonitorRemote.UWP.Helpers.Extensions;
 using OpenHardwareMonitorRemote.UWP.Services;
 using OpenHardwareMonitorRemote.UWP.Services.Interfaces;
+using OpenHardwareMonitorRemote.UWP.Views;
 
 namespace OpenHardwareMonitorRemote.UWP.ViewModels
 {
@@ -9,6 +12,8 @@ namespace OpenHardwareMonitorRemote.UWP.ViewModels
         private static bool _isInitialized;
 
         public MainPageViewModel MainPageViewModel => SimpleIoc.Default.GetInstance<MainPageViewModel>();
+
+        public EditConnectionPageViewModel EditConnectionPagePageViewModel => SimpleIoc.Default.GetInstance<EditConnectionPageViewModel>();
 
         public ViewModelLocator()
         {
@@ -23,7 +28,10 @@ namespace OpenHardwareMonitorRemote.UWP.ViewModels
 
         private static void RegisterDefaultServices()
         {
+            SimpleIoc.Default.Register(CreateNavigationService);
+
             SimpleIoc.Default.Register<MainPageViewModel>();
+            SimpleIoc.Default.Register<EditConnectionPageViewModel>();
         }
 
         private static void RegisterRuntimeServices()
@@ -34,6 +42,16 @@ namespace OpenHardwareMonitorRemote.UWP.ViewModels
         private static void RegisterDesignServices()
         {
             SimpleIoc.Default.Register<IDataProvider, Services.Design.DataProvider>();
+        }
+
+        private static INavigationService CreateNavigationService()
+        {
+            var navigationService = new NavigationService();
+
+            navigationService.Configure(typeof(MainPage));
+            navigationService.Configure(typeof(EditConnectionPage));
+
+            return navigationService;
         }
     }
 }
