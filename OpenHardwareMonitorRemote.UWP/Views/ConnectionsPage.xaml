@@ -1,14 +1,14 @@
 ﻿<Page
-    x:Class="OpenHardwareMonitorRemote.UWP.Views.MainPage"
+    x:Class="OpenHardwareMonitorRemote.UWP.Views.ConnectionsPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:OpenHardwareMonitorRemote.UWP"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=MainPageViewModel}"
+    DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=ConnectionsPageViewModel}"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Padding="5">
         <GridView ItemsSource="{Binding Connections}" SelectedItem="{Binding SelectedConnection, Mode=TwoWay}">
             <GridView.ItemsPanel>
                 <ItemsPanelTemplate>

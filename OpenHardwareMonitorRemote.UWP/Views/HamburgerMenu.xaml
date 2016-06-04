@@ -17,9 +17,9 @@
         </Grid.RowDefinitions>
 
         <StackPanel>
-            <controls:HamburgerMenuButton Content="Home" NavigationSourcePageType="views:MainPage">
+            <controls:HamburgerMenuButton Content="Connections" NavigationSourcePageType="views:ConnectionsPage">
                 <controls:HamburgerMenuButton.Icon>
-                    <FontIcon Glyph="&#xE80F;" />
+                    <FontIcon Glyph="&#xE8AF;" />
                 </controls:HamburgerMenuButton.Icon>
             </controls:HamburgerMenuButton>
         </StackPanel>

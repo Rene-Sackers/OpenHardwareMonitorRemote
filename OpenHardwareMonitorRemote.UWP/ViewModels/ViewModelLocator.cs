@@ -11,7 +11,7 @@ namespace OpenHardwareMonitorRemote.UWP.ViewModels
     {
         private static bool _isInitialized;
 
-        public MainPageViewModel MainPageViewModel => SimpleIoc.Default.GetInstance<MainPageViewModel>();
+        public ConnectionsPageViewModel ConnectionsPageViewModel => SimpleIoc.Default.GetInstance<ConnectionsPageViewModel>();
 
         public EditConnectionPageViewModel EditConnectionPagePageViewModel => SimpleIoc.Default.GetInstance<EditConnectionPageViewModel>();
 
@@ -30,7 +30,7 @@ namespace OpenHardwareMonitorRemote.UWP.ViewModels
         {
             SimpleIoc.Default.Register(CreateNavigationService);
 
-            SimpleIoc.Default.Register<MainPageViewModel>();
+            SimpleIoc.Default.Register<ConnectionsPageViewModel>();
             SimpleIoc.Default.Register<EditConnectionPageViewModel>();
         }
 
@@ -48,7 +48,7 @@ namespace OpenHardwareMonitorRemote.UWP.ViewModels
         {
             var navigationService = new NavigationService();
 
-            navigationService.Configure(typeof(MainPage));
+            navigationService.Configure(typeof(ConnectionsPage));
             navigationService.Configure(typeof(EditConnectionPage));
 
             return navigationService;

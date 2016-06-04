@@ -1,8 +1,8 @@
 ﻿namespace OpenHardwareMonitorRemote.UWP.Views
 {
-    public sealed partial class MainPage
+    public sealed partial class ConnectionsPage
     {
-        public MainPage()
+        public ConnectionsPage()
         {
             InitializeComponent();
         }

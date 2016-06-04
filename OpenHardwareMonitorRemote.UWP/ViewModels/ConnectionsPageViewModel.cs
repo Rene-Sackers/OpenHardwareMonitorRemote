@@ -8,7 +8,7 @@ using OpenHardwareMonitorRemote.UWP.Services.Interfaces;
 
 namespace OpenHardwareMonitorRemote.UWP.ViewModels
 {
-    public class MainPageViewModel : ViewModelBase
+    public class ConnectionsPageViewModel : ViewModelBase
     {
         private readonly IDataProvider _dataProvider;
         private readonly EditConnectionPageViewModel _editConnectionPageViewModel;
@@ -39,7 +39,7 @@ namespace OpenHardwareMonitorRemote.UWP.ViewModels
 
         public RelayCommand DeleteSelectedConnectionCommand { get; set; }
 
-        public MainPageViewModel(IDataProvider dataProvider, EditConnectionPageViewModel editConnectionPageViewModel)
+        public ConnectionsPageViewModel(IDataProvider dataProvider, EditConnectionPageViewModel editConnectionPageViewModel)
         {
             _dataProvider = dataProvider;
             _editConnectionPageViewModel = editConnectionPageViewModel;
