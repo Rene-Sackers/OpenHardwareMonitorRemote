@@ -14,6 +14,8 @@ namespace OpenHardwareMonitorRemote.UWP
     /// </summary>
     sealed partial class App
     {
+        public static CoreDispatcher UiDispatcher;
+
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -31,6 +33,8 @@ namespace OpenHardwareMonitorRemote.UWP
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
+            UiDispatcher = CoreWindow.GetForCurrentThread().Dispatcher;
+
             var rootFrame = Window.Current.Content as HamburgerFrame;
 
             // Do not repeat app initialization when the Window already has content,

@@ -22,6 +22,11 @@
                     <FontIcon Glyph="&#xE8AF;" />
                 </controls:HamburgerMenuButton.Icon>
             </controls:HamburgerMenuButton>
+            <controls:HamburgerMenuButton Content="Data" NavigationSourcePageType="views:LiveViewPage">
+                <controls:HamburgerMenuButton.Icon>
+                    <PathIcon HorizontalAlignment="Center" VerticalAlignment="Center" Data="{StaticResource ChartLine}" />
+                </controls:HamburgerMenuButton.Icon>
+            </controls:HamburgerMenuButton>
         </StackPanel>
     </Grid>
 </UserControl>

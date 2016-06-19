@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using OpenHardwareMonitorRemote.UWP.Models;
+﻿using OpenHardwareMonitorRemote.UWP.Models;
 
 namespace OpenHardwareMonitorRemote.UWP.Services.Interfaces
 {

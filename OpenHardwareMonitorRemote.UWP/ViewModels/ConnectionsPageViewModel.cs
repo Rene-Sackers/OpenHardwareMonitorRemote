@@ -26,6 +26,8 @@ namespace OpenHardwareMonitorRemote.UWP.ViewModels
 
                 _selectedConnection = value;
                 RaisePropertyChanged();
+
+                ConnectToSelectedSelectedConnectionCommand.RaiseCanExecuteChanged();
                 EditSelectedConnectionCommand.RaiseCanExecuteChanged();
                 DeleteSelectedConnectionCommand.RaiseCanExecuteChanged();
             }

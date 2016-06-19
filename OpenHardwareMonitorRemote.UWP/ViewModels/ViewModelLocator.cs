@@ -15,6 +15,8 @@ namespace OpenHardwareMonitorRemote.UWP.ViewModels
 
         public EditConnectionPageViewModel EditConnectionPagePageViewModel => SimpleIoc.Default.GetInstance<EditConnectionPageViewModel>();
 
+        public LiveViewPageViewModel LiveViewPageViewModel => SimpleIoc.Default.GetInstance<LiveViewPageViewModel>();
+
         public ViewModelLocator()
         {
             if (_isInitialized) return;
@@ -32,6 +34,7 @@ namespace OpenHardwareMonitorRemote.UWP.ViewModels
 
             SimpleIoc.Default.Register<ConnectionsPageViewModel>();
             SimpleIoc.Default.Register<EditConnectionPageViewModel>();
+            SimpleIoc.Default.Register<LiveViewPageViewModel>();
         }
 
         private static void RegisterRuntimeServices()

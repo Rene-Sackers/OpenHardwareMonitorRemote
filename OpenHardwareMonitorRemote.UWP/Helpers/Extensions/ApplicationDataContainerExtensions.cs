@@ -1,5 +1,4 @@
-﻿using System;
-using Windows.Storage;
+﻿using Windows.Storage;
 using Newtonsoft.Json;
 
 namespace OpenHardwareMonitorRemote.UWP.Helpers.Extensions
