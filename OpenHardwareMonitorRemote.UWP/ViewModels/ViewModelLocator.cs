@@ -1,5 +1,7 @@
-﻿using GalaSoft.MvvmLight.Ioc;
+﻿using Windows.UI.Notifications;
+using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Views;
+using Microsoft.Practices.ServiceLocation;
 using OpenHardwareMonitorRemote.UWP.Helpers.Extensions;
 using OpenHardwareMonitorRemote.UWP.Services;
 using OpenHardwareMonitorRemote.UWP.Services.Interfaces;
@@ -22,6 +24,8 @@ namespace OpenHardwareMonitorRemote.UWP.ViewModels
             if (_isInitialized) return;
             _isInitialized = true;
 
+            ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
+
             RegisterDefaultServices();
 
             if (Windows.ApplicationModel.DesignMode.DesignModeEnabled) RegisterDesignServices();
@@ -30,7 +34,8 @@ namespace OpenHardwareMonitorRemote.UWP.ViewModels
 
         private static void RegisterDefaultServices()
         {
-            SimpleIoc.Default.Register(CreateNavigationService);
+            var navigationService = CreateNavigationService();
+            SimpleIoc.Default.Register(() => navigationService);
 
             SimpleIoc.Default.Register<ConnectionsPageViewModel>();
             SimpleIoc.Default.Register<EditConnectionPageViewModel>();
@@ -40,11 +45,13 @@ namespace OpenHardwareMonitorRemote.UWP.ViewModels
         private static void RegisterRuntimeServices()
         {
             SimpleIoc.Default.Register<IDataProvider, DataProvider>();
+            SimpleIoc.Default.Register<IApplicationState, ApplicationState>();
         }
 
         private static void RegisterDesignServices()
         {
             SimpleIoc.Default.Register<IDataProvider, Services.Design.DataProvider>();
+            SimpleIoc.Default.Register<IApplicationState, Services.Design.ApplicationState>();
         }
 
         private static INavigationService CreateNavigationService()
@@ -53,6 +60,7 @@ namespace OpenHardwareMonitorRemote.UWP.ViewModels
 
             navigationService.Configure(typeof(ConnectionsPage));
             navigationService.Configure(typeof(EditConnectionPage));
+            navigationService.Configure(typeof(LiveViewPage));
 
             return navigationService;
         }

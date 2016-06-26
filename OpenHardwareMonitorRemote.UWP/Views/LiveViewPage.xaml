@@ -6,12 +6,41 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:charts="using:Syncfusion.UI.Xaml.Charts"
+    xmlns:models="using:OpenHardwareMonitorRemote.UWP.Models"
+    xmlns:helpers="using:OpenHardwareMonitorRemote.UWP.Helpers"
     DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=LiveViewPageViewModel}"
     mc:Ignorable="d">
+    
+    <Page.Resources>
+        <Style x:Key="AddViewButtonStyle" TargetType="Button">
+            <Setter Property="Width" Value="50" />
+            <Setter Property="Height" Value="50" />
+        </Style>
+
+        <DataTemplate x:Key="PageHeader" x:DataType="models:PageDesign">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0">Section header</TextBlock>
+                <Button Margin="5,0,0,0" Grid.Column="1">
+                    <FontIcon Glyph="&#xE738;" />
+                </Button>
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="PageContent" x:DataType="models:PageDesign">
+            <Rectangle Fill="#FF0000" Width="1900" Height="900"></Rectangle>
+        </DataTemplate>
+    </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        
+        <helpers:BindableHub ItemsSource="{Binding ApplicationState.ActiveConnection.PageDesigns}" ItemHeaderTemplate="{StaticResource PageHeader}" ItemTemplate="{StaticResource PageContent}" />
 
-        <Grid.Resources>
+        <!--<Grid.Resources>
             <Style x:Key="AxisLineStyle" TargetType="Line">
                 <Setter Property="Stroke" Value="#FFD1D3D4"/>
                 <Setter Property="StrokeThickness" Value="1"/>
@@ -51,6 +80,18 @@
             </charts:SfChart.SecondaryAxis>
 
             <charts:SplineSeries StrokeThickness="2" ItemsSource="{Binding ChartItems}" XBindingPath="Date" YBindingPath="Value"/>
-        </charts:SfChart>
+        </charts:SfChart>-->
     </Grid>
+
+    <Page.BottomAppBar>
+        <AppBar ClosedDisplayMode="Compact">
+            <StackPanel Orientation="Horizontal">
+                <AppBarButton IsCompact="True" Command="{Binding AddPageCommand}">
+                    <AppBarButton.Icon>
+                        <FontIcon Glyph="&#xE710;" />
+                    </AppBarButton.Icon>
+                </AppBarButton>
+            </StackPanel>
+        </AppBar>
+    </Page.BottomAppBar>
 </Page>

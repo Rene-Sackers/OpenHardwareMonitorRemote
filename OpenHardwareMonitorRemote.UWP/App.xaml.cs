@@ -6,6 +6,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
 using Cimbalino.Toolkit.Controls;
 using OpenHardwareMonitorRemote.UWP.Views;
+using OpenHardwareMonitorRemote.UWP.Views.UserControls;
 
 namespace OpenHardwareMonitorRemote.UWP
 {

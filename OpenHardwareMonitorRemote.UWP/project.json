@@ -1,9 +1,11 @@
 ﻿{
   "dependencies": {
     "Cimbalino.Toolkit.Controls": "2.2.1",
+    "Fody": "1.29.4",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
     "MvvmLight": "5.3.0",
-    "Newtonsoft.Json": "8.0.3"
+    "Newtonsoft.Json": "8.0.3",
+    "PropertyChanged.Fody": "1.51.3"
   },
   "frameworks": {
     "uap10.0": {}

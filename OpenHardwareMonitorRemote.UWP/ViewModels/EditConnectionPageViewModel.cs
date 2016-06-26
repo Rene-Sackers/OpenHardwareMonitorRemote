@@ -1,9 +1,11 @@
 ﻿using System.Threading.Tasks;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 using GalaSoft.MvvmLight.Views;
 using OpenHardwareMonitorRemote.UWP.Models;
 using OpenHardwareMonitorRemote.UWP.Helpers.Extensions;
+using OpenHardwareMonitorRemote.UWP.Models.Messages;
 using OpenHardwareMonitorRemote.UWP.Views;
 
 namespace OpenHardwareMonitorRemote.UWP.ViewModels
@@ -32,15 +34,14 @@ namespace OpenHardwareMonitorRemote.UWP.ViewModels
 
         public RelayCommand CancelCommand { get; }
 
-        public RelayCommand NotifyNavigatedFrom { get; }
-
         public EditConnectionPageViewModel(INavigationService navigationService)
         {
             _navigationService = navigationService;
 
             OkCommand = new RelayCommand(() => SetModalResultAndNavigateBack(true));
             CancelCommand = new RelayCommand(() => SetModalResultAndNavigateBack(false));
-            NotifyNavigatedFrom = new RelayCommand(NavigatedFrom);
+
+            Messenger.Default.Register<NavigatedFromPageMessage>(this, NavigatedFromPage);
         }
 
         private void SetModalResultAndNavigateBack(bool result)
@@ -50,8 +51,10 @@ namespace OpenHardwareMonitorRemote.UWP.ViewModels
             _navigationService.GoBack();
         }
 
-        private void NavigatedFrom()
+        private void NavigatedFromPage(NavigatedFromPageMessage navigatedFromPageMessage)
         {
+            if (navigatedFromPageMessage.PageNavigatedFrom.GetType() != typeof(EditConnectionPage)) return;
+
             _modalTaskCompletionSource?.TrySetResult(false);
         }
 

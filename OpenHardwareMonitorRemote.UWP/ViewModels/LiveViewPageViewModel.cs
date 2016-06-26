@@ -1,41 +1,37 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Threading.Tasks;
-using Windows.UI.Core;
-using GalaSoft.MvvmLight;
-using OpenHardwareMonitorRemote.UWP.Models;
+﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Views;
+using OpenHardwareMonitorRemote.UWP.Services.Interfaces;
 
 namespace OpenHardwareMonitorRemote.UWP.ViewModels
 {
     public class LiveViewPageViewModel : ViewModelBase
     {
-        public ObservableCollection<ChartItem> ChartItems { get; set; } = new ObservableCollection<ChartItem>();
+        private readonly INavigationService _navigationService;
 
-        public LiveViewPageViewModel()
+        public RelayCommand AddPageCommand { get; }
+
+        public IApplicationState ApplicationState { get; set; }
+
+        public LiveViewPageViewModel(IApplicationState applicationState, INavigationService navigationService)
         {
-            var random = new Random();
+            _navigationService = navigationService;
+            ApplicationState = applicationState;
+            //ApplicationState.PropertyChanged += ApplicationStateOnPropertyChanged;
             
-            Task.Factory.StartNew(async () =>
-            {
-                while (true)
-                {
-                    await Task.Delay(100);
-                    
-                    await InvokeOnUi(() =>
-                    {
-                        ChartItems.Add(new ChartItem
-                        {
-                            Date = DateTime.Now,
-                            Value = random.Next(0, 101)
-                        });
-                    });
-                }
-            });
+            AddPageCommand = new RelayCommand(AddView);
         }
 
-        private static async Task InvokeOnUi(DispatchedHandler action)
+        //private void ApplicationStateOnPropertyChanged(object sender, PropertyChangedEventArgs propertyChangedEventArgs)
+        //{
+        //    if (propertyChangedEventArgs.PropertyName != nameof(IApplicationState.ActiveConnection)) return;
+
+
+        //}
+
+        private void AddView()
         {
-            await App.UiDispatcher.RunAsync(CoreDispatcherPriority.Normal, action);
+            
         }
     }
 }

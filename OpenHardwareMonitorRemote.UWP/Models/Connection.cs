@@ -1,54 +1,18 @@
-﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using OpenHardwareMonitorRemote.UWP.Annotations;
+﻿using System.Collections.ObjectModel;
+using PropertyChanged;
 
 namespace OpenHardwareMonitorRemote.UWP.Models
 {
-    public class Connection : INotifyPropertyChanged
+    [ImplementPropertyChanged]
+    public class Connection
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private string _title;
+        public string Title { get; set; }
         
-        public string Title
-        {
-            get { return _title; }
-            set
-            {
-                if (Title == value) return;
-
-                _title = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string _ip;
+        public string Ip { get; set; }
         
-        public string Ip
-        {
-            get { return _ip; }
-            set
-            {
-                if (Ip == value) return;
+        public ushort Port { get; set; }
 
-                _ip = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private ushort _port;
-        
-        public ushort Port
-        {
-            get { return _port; }
-            set
-            {
-                if (Port == value) return;
-
-                _port = value;
-                OnPropertyChanged();
-            }
-        }
+        public ObservableCollection<PageDesign> PageDesigns { get; set; } = new ObservableCollection<PageDesign>();
 
         public Connection Clone()
         {
@@ -58,12 +22,6 @@ namespace OpenHardwareMonitorRemote.UWP.Models
                 Ip = Ip,
                 Port = Port
             };
-        }
-
-        [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

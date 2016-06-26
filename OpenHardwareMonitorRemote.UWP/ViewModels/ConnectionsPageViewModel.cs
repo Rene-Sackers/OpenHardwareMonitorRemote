@@ -3,14 +3,19 @@ using System.Collections.ObjectModel;
 using Windows.UI.Popups;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
+using Microsoft.Xaml.Interactions.Core;
 using OpenHardwareMonitorRemote.UWP.Models;
+using OpenHardwareMonitorRemote.UWP.Models.Messages;
 using OpenHardwareMonitorRemote.UWP.Services.Interfaces;
+using OpenHardwareMonitorRemote.UWP.Views;
 
 namespace OpenHardwareMonitorRemote.UWP.ViewModels
 {
     public class ConnectionsPageViewModel : ViewModelBase
     {
         private readonly IDataProvider _dataProvider;
+        private readonly IApplicationState _applicationState;
         private readonly EditConnectionPageViewModel _editConnectionPageViewModel;
 
         public ObservableCollection<Connection> Connections { get; }
@@ -41,9 +46,10 @@ namespace OpenHardwareMonitorRemote.UWP.ViewModels
 
         public RelayCommand DeleteSelectedConnectionCommand { get; set; }
 
-        public ConnectionsPageViewModel(IDataProvider dataProvider, EditConnectionPageViewModel editConnectionPageViewModel)
+        public ConnectionsPageViewModel(IDataProvider dataProvider, IApplicationState applicationState, EditConnectionPageViewModel editConnectionPageViewModel)
         {
             _dataProvider = dataProvider;
+            _applicationState = applicationState;
             _editConnectionPageViewModel = editConnectionPageViewModel;
 
             Connections = new ObservableCollection<Connection>(dataProvider.GetStoredApplicationData().Connections);
@@ -68,9 +74,15 @@ namespace OpenHardwareMonitorRemote.UWP.ViewModels
             _dataProvider.SaveStoredApplicationData(storedData);
         }
 
-        private void ConnectToSelectedConnection()
+        private async void ConnectToSelectedConnection()
         {
-            throw new NotImplementedException();
+            if (SelectedConnection == null)
+            {
+                await new MessageDialog("No connection selected.").ShowAsync();
+                return;
+            }
+
+            _applicationState.ActiveConnection = SelectedConnection;
         }
 
         private async void EditSelectedConnection()

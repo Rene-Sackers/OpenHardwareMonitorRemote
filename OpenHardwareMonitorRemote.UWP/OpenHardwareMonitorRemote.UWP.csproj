@@ -95,13 +95,21 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\BindableHub.cs" />
     <Compile Include="Helpers\Extensions\ApplicationDataContainerExtensions.cs" />
     <Compile Include="Helpers\Extensions\NavigationServiceExtension.cs" />
+    <Compile Include="Helpers\InvokeOnUi.cs" />
+    <Compile Include="Models\Messages\NavigatedFromPageMessage.cs" />
+    <Compile Include="Models\PageDesign.cs" />
+    <Compile Include="Models\PageDesignType.cs" />
     <Compile Include="Models\StoredApplicationData.cs" />
     <Compile Include="Models\Connection.cs" />
     <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="Services\ApplicationState.cs" />
     <Compile Include="Services\DataProvider.cs" />
+    <Compile Include="Services\Design\ApplicationState.cs" />
     <Compile Include="Services\Design\DataProvider.cs" />
+    <Compile Include="Services\Interfaces\IApplicationState.cs" />
     <Compile Include="Services\Interfaces\IDataProvider.cs" />
     <Compile Include="Models\ChartItem.cs" />
     <Compile Include="ViewModels\EditConnectionPageViewModel.cs" />
@@ -111,7 +119,7 @@
     <Compile Include="Views\EditConnectionPage.xaml.cs">
       <DependentUpon>EditConnectionPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\HamburgerMenu.xaml.cs">
+    <Compile Include="Views\UserControls\HamburgerMenu.xaml.cs">
       <DependentUpon>HamburgerMenu.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ConnectionsPage.xaml.cs">
@@ -129,6 +137,7 @@
     <None Include="OpenHardwareMonitorRemote.UWP_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="FodyWeavers.xml" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -152,7 +161,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\HamburgerMenu.xaml">
+    <Page Include="Views\UserControls\HamburgerMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

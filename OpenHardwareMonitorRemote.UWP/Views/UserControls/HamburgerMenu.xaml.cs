@@ -1,4 +1,4 @@
-﻿namespace OpenHardwareMonitorRemote.UWP.Views
+﻿namespace OpenHardwareMonitorRemote.UWP.Views.UserControls
 {
     public sealed partial class HamburgerMenu
     {
